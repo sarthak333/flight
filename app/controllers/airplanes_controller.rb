@@ -27,7 +27,7 @@ class AirplanesController < ApplicationController
 
   def postadd
     @airplane=Airplane.find(params[:airplane_id])
-    if @airplane.seatconfig_id.nil?
+
     @seatconfig=Seatconfig.find(params[:seatconfig_id])
     @scnew=Seatconfig.create(:name=>@airplane.name)
     @scnew.update(:show=> false)
@@ -36,22 +36,14 @@ class AirplanesController < ApplicationController
       s.row.times do |r|
         s.column.times do |c|
         @sc.seats.create()
-        puts "testbug"
-        puts "testbug"
-        puts "testbug"
-        puts "testbug"
-        puts "testbug"
-        puts "testbug"
-        puts @scnew.id
-        puts "adasda"
-  @airplane.update(:seatconfig_id=>@scnew.id)
     end
   end
   end
+    @airplane.update(:seatconfig_id=>@scnew.id)
+    flash[:success]="added"
+    redirect_to root_path
 end
-flash[:success]="added"
-redirect_to root_path
-  end
+
 
   private
   def airplane_params
