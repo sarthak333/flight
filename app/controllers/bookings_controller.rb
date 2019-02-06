@@ -19,6 +19,7 @@ def select
   else
   @booking.tempseats.create(:price=>@secat.baseprice, :seat_id=>@seat.id, :emergency=>@seat.emergency, :booking_id=>@booking.id, :position=>@seat.position)
 end
+redirect_back(fallback_location: root_path)
 end
 
 def seeprice
