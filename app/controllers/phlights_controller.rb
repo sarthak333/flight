@@ -36,11 +36,10 @@ def addplane
     end
     end
   @phlight.update(:airplane_id=> @ap.id)
-  puts @ap
-  puts @ap.id
+  puts "addplane"
   puts "testbug"
   flash[:success]="Airplane has been added successfully"
-  render 'show'
+  redirect_to root_path
 end
 
   private
