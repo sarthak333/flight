@@ -23,7 +23,7 @@ devise_for :users, :controllers => { registrations: 'registrations' }
   post '/search', to: 'searchs#createsearch'
   get '/search', to: 'searchs#error'
   get '/bookseat', to: 'bookings#new'
-  get '/selectseat', to: 'bookings#select'
+  post '/selectseaet', to: 'bookings#select'
   get '/selectinvalid', to: 'bookings#invalid'
   get '/seeprice', to: 'bookings#seeprice'
   get '/confirm', to: 'bookings#confirm'
