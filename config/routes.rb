@@ -6,7 +6,7 @@ devise_for :users, :controllers => { registrations: 'registrations' }
   get '/showflight', to: 'phlights#show'
   post '/newflight', to: 'phlights#create'
   get '/addairplane', to: 'phlights#addairplane'
-  post '/addplane', to: 'phlights#addplane'
+  get '/addplane1', to: 'phlights#addplane'
   get '/newairplane', to: 'airplanes#new'
   post '/newairplane', to: 'airplanes#create'
   get '/newseatconfig', to: 'seatconfigs#new'

@@ -22,13 +22,10 @@ class AirplanesController < ApplicationController
 
   def addconfiguration
     @airplane=Airplane.find(params[:airplane_id])
-    puts "testbug"
-    puts "addconfiguration"
+
   end
 
   def postadd
-    puts "testbug"
-    puts "postadd"
     @airplane=Airplane.find(params[:airplane_id])
 
     @seatconfig=Seatconfig.find(params[:seatconfig_id])
