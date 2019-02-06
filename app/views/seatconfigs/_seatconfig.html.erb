@@ -4,6 +4,6 @@
 <%= seatconfig.name%>
 </h3>
 <%= render seatconfig.seatcats.all %>
-<%= link_to "Add", addconfiguration_path(:airplane_id=>@airplane.id, :seatconfig_id=> seatconfig.id), method: :post, class:"btn btn-outline-success"%>
+<%= link_to "Add",method: :post, addconfiguration_path(:airplane_id=>@airplane.id, :seatconfig_id=> seatconfig.id), class:"btn btn-outline-success"%>
 <br>
 </div>

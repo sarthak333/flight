@@ -22,7 +22,7 @@ class AirplanesController < ApplicationController
 
   def addconfiguration
     @airplane=Airplane.find(params[:airplane_id])
-  
+
   end
 
   def postadd
@@ -36,6 +36,14 @@ class AirplanesController < ApplicationController
       s.row.times do |r|
         s.column.times do |c|
         @sc.seats.create()
+        puts "testbug"
+        puts "testbug"
+        puts "testbug"
+        puts "testbug"
+        puts "testbug"
+        puts "testbug"
+        puts @scnew.id
+        puts "adasda"
   @airplane.update_column(:seatconfig_id, @scnew.id)
     end
   end

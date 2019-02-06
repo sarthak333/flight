@@ -1,9 +1,11 @@
-<% if airplane.show %>
-<div class="col-sm-6">
-<br>
-<h1><%= airplane.name%></h1>
-<% seatconfig=Seatconfig.find(airplane.seatconfig_id)%>
-<%= render seatconfig.seatcats%>
-<%= link_to "Change Seat Config", addconfiguration_path(:airplane_id=>airplane.id, :seatconfig_id=>seatconfig.id), class:"btn btn-outline-success"%>
-</div>
-<%end%>
+<%- airplanes.each do |airplane| %>
+  <% if airplane.show %>
+    <div class="col-sm-6">
+    <br>
+    <h1><%= airplane.name%></h1>
+    <% seatconfig=Seatconfig.find(airplane.seatconfig_id)%>
+    <%= render seatconfig.seatcats%>
+    <%= link_to "Change Seat Config", addconfiguration_path(:airplane_id=>airplane.id, :seatconfig_id=>seatconfig.id), class:"btn btn-outline-success"%>
+    </div>
+  <%end%>
+<% end %>

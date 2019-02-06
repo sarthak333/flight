@@ -1,4 +1,4 @@
 <h1> List of Airplanes </h1>
 <div class="row">
-<%= render Airplane.where(show: true)%>
+<%= render 'airplane', airplanes: Airplane.where(show: true)%>
 </div>
