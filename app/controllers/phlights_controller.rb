@@ -26,7 +26,7 @@ def addplane
   @ap=Airplane.create(:name=>@airplane.name, :show=>false)
   @scon= Seatconfig.find(@airplane.seatconfig_id)
   @nscon=Seatconfig.create(:name=>@scon.name, :show=>false)
-  @ap.update_column(:seatconfig_id,@nscon.id)
+  @ap.update(:seatconfig_id=>@nscon.id)
   @scon.seatcats.each do |a|
   @nscat= @nscon.seatcats.create(:name=>a.name,:row => a.row, :column=> a.column, :baseprice=> a.baseprice)
   a.row.times do |r|
@@ -35,7 +35,7 @@ def addplane
     end
     end
     end
-  @phlight.update_column(:airplane_id, @ap.id)
+  @phlight.update(:airplane_id=> @ap.id)
   puts @ap
   puts @ap.id
   puts "testbug"
