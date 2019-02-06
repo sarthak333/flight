@@ -49,6 +49,8 @@ class AirplanesController < ApplicationController
   end
   end
 end
+flash[:success]="added"
+redirect_to root_path
   end
 
   private
