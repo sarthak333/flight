@@ -1,0 +1,26 @@
+<div class="col-sm-4">
+<h4>Booking: <%=booking.id%></h4>
+<%@flight=Phlight.find(booking.flight_id)%>
+<h5>Flight: <%=@flight.id%></h5>
+<%@airplane=Airplane.find(@flight.airplane_id)%>
+<%@scon= Seatconfig.find(@airplane.seatconfig_id)%>
+<%@secat=@scon.seatcats.order(:id)%>
+<%@secat.each do |se|%>
+<% @st=se.seats.order(:id) %>
+<%@st.each do |a|%>
+
+<%if a.booking_id==booking.id%>
+<div class="seatcontainer-light">
+<div class="hidden">.</div></div>
+<%else%>
+<div class="seatcontainer-dark">
+<div class="hidden">.</div></div>
+<%end%>
+
+<%if a.id % 3==0%>
+<br>
+<%end%>
+<%end%>
+<br>
+<%end%>
+</div>

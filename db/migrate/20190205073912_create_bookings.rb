@@ -4,7 +4,7 @@ class CreateBookings < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :flight_id
       t.text :pnr
-      t.integer :price
+      t.integer :price, default: 0
 
       t.timestamps
     end

@@ -1,0 +1,12 @@
+<h1>Confirm Your Booking</h1>
+<%=render @booking.tempseats%>
+<br>
+<%p=0%>
+<% @booking.tempseats.each do |t| %>
+<%p=p+t.price%>
+<%end%>
+<%@booking.update_column(:price,p)%>
+<h3>Total Price:</h3>
+<%=@booking.price%>
+<br>
+<%=link_to "Confirm", confirm_path(:booking_id=>@booking.id), class:"btn btn-outline-success"%>

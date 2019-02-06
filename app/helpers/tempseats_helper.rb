@@ -1,0 +1,2 @@
+module TempseatsHelper
+end

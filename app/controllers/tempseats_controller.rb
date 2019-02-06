@@ -1,0 +1,2 @@
+class TempseatsController < ApplicationController
+end

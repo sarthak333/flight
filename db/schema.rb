@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_06_072852) do
+ActiveRecord::Schema.define(version: 2019_02_06_101137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_02_06_072852) do
     t.integer "user_id"
     t.integer "flight_id"
     t.text "pnr"
-    t.integer "price"
+    t.integer "price", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "confirm", default: false
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_02_06_072852) do
     t.datetime "updated_at", null: false
     t.integer "break"
     t.integer "number"
+    t.integer "booking_id"
     t.index ["seatcat_id"], name: "index_seats_on_seatcat_id"
   end
 

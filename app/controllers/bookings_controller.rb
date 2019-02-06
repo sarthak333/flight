@@ -21,6 +21,22 @@ def select
 end
 end
 
+def seeprice
+  @booking=Booking.find(params[:booking_id])
+
+end
+def confirm
+  @booking=Booking.find(params[:booking_id])
+  flash[:success]="Booking has been successful"
+  @booking.update_column(:confirm, true)
+  @booking.tempseats.each do |b|
+    @seat=Seat.find(b.seat_id)
+    @seat.update_column(:available, false)
+    @seat.update_column(:booking_id, @booking.id)
+  end
+  redirect_to root_path
+end
+
 def invalid
 flash[:danger]="Seat not available"
 redirect_back(fallback_location: root_path)
