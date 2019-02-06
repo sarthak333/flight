@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  row: 1
+  column: 1
+  baseprice: 1
+  seatconfig: one
+
+two:
+  name: MyString
+  row: 1
+  column: 1
+  baseprice: 1
+  seatconfig: two

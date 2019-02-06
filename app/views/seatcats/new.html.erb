@@ -1,0 +1,25 @@
+<h1> Add Seat Classes to the Configuration: </h1>
+
+<%= form_for(@seatcat, url: newseatcat_path(:seatconfig_id => @seatconfig.id)) do |f| %>
+<p>
+  <%= f.label :name %><br>
+  <%= f.text_field :name, class: 'form-control' %>
+</p>
+<p>
+  <%= f.label :row%><br>
+  <%= f.number_field :row, class: 'form-control' %>
+</p>
+  <p>
+    <%= f.label :column %><br>
+    <%= f.number_field :column, class: 'form-control' %>
+  </p>
+  <p>
+    <%= f.label :base_price %>
+    <%= f.number_field :baseprice, class: 'form-control' %>
+
+  </p>
+
+  <p>
+          <%= f.submit "Create Seat Category", class: "btn btn-outline-info btn-lg" %>
+    </p>
+<% end %>

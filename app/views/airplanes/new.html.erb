@@ -1,0 +1,8 @@
+<h1> Add an Airplane </h1>
+
+<%= form_for(@airplane, url: newairplane_path) do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name, class: 'form-control' %>
+
+<%= f.submit "Add the Airplane", class: "btn btn-outline-info btn-lg" %>
+<% end %>

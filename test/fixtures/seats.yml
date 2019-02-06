@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pnr: MyString
+  position: MyString
+  available: false
+  emergency: false
+  seatcat: one
+
+two:
+  pnr: MyString
+  position: MyString
+  available: false
+  emergency: false
+  seatcat: two

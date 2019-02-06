@@ -1,0 +1,20 @@
+<h1><%=current_user.name %>
+</h1>
+<%if current_user.admin?%>
+<%= link_to "Admin Panel", admins_path, class:"btn btn-outline-primary btn-lg"%>
+<%end%>
+<br>
+<br>
+<br>
+<h3>Search for Flights</h3>
+<%  @search=Search.new%>
+<%= form_for(@search, url: search_path) do |f| %>
+
+<%= f.label :origin %>
+<%= f.text_field :origin, class: 'form-control' %>
+
+<%= f.label :destination %>
+<%= f.text_field :destination, class: 'form-control' %>
+
+<%= f.submit "Search", class: "btn btn-outline-warning btn-lg", method: :post %>
+<% end %>

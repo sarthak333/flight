@@ -1,0 +1,58 @@
+<%flight= Phlight.where(origin: @search.origin, destination: @search.destination) %>
+<h1>Search Results</h1>
+<% if flight.count>=1 %>
+<h3>Your Required Flights</h3>
+<%flight.each do |p|%>
+<h4>
+<%=p.name%>
+</h4>
+<h5>From:</h5>
+<%=p.origin%>
+<h5>To:</h5>
+<%=p.destination%>
+<br>
+<%= link_to "Book a Seat", bookseat_path(:flight_id => p.id), class: "btn btn-outline-success btn-sm"%>
+<br>
+<%end%>
+<%else%>
+<h3>Sorry we don't fly that route yet.</h3>
+<br>
+<Br>
+<%flighto= Phlight.where(origin: @search.origin) %>
+<%flightd= Phlight.where(destination: @search.destination) %>
+<% if flighto.count>=1 %>
+<h5>Flights With the Same Origin </h5>
+<% flighto.each do |po| %>
+<h4>
+<%= po.name %>
+</h4>
+<h5>From:</h5>
+<%=po.origin%>
+<h5>To:</h5>
+<%=po.destination%>
+<br>
+<%= link_to "Book a Seat", bookseat_path(:flight_id => po.id), class: "btn btn-outline-success btn-sm"%>
+<br>
+
+<%end%>
+<%end%>
+<% if flightd.count>=1 %>
+<br>
+<br>
+<br>
+<h5>Flights With the Same Destination </h5>
+<% flightd.each do |pd| %>
+<h4>
+<%= pd.name %>
+</h4>
+<h5>From:</h5>
+<%=pd.origin%>
+<h5>To:</h5>
+<%=pd.destination%>
+<br>
+<%= link_to "Book a Seat", bookseat_path(:flight_id => pd.id), class: "btn btn-outline-success btn-sm"%>
+<br>
+<%end%>
+<%end%>
+
+<%end%>

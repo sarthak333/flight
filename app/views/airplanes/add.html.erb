@@ -1,0 +1,11 @@
+<% @airplane= Airplane.find(params[:airplane_id])%>
+<h1><%= @airplane.name %></h1>
+
+<%if @airplane.seatconfig_id.nil?%>
+<h3>No seat configurations added yet.</h3>
+<%= link_to "Create New Config for this Airplane", newseatconfig_path, class:"btn btn-outline-success"%>
+<%= link_to "Add Existing Config", addconfiguration_path(:airplane_id=>@airplane.id), class:"btn btn-outline-success"%>
+<%else%>
+<%@seatconfig= Seatconfig.find(@airplane.seatconfig_id)%>
+<%= render @seatconfig.seatcats %>
+<%end%>

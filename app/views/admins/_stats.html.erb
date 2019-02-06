@@ -1,0 +1,27 @@
+<h1>Stats</h1>
+<% if !Search.exists? %>
+<h5>No stats Available yet </h5>
+<%else%>
+<% full=Search.select(:origin,:destination).group(:origin,:destination).having("count(*) > 1").size%>
+<% origin = Search.select(:origin).group(:origin).having("count(*) > 1").size%>
+<% destination= Search.select(:destination).group(:destination).having("count(*) > 1").size%>
+<%origin.delete("")%>
+<%destination.delete("")%>
+<%if full.nil? %>
+<h4>Most Famous Flight Route </h4>
+<h5>Origin:</h5>
+<%= full.key(full.values.max).first %>
+<h5>Destination:</h5>
+<%= full.key(full.values.max).second %>
+<%end%>
+
+<br>
+<Br>
+
+  <h4>Most Famous Origin</h4>
+  <%= origin.key(origin.values.compact.max) %>
+  <br>
+  <Br>
+    <h4>Most Famous Destination</h4>
+    <%= destination.key(destination.values.compact.max) %>
+<%end%>

@@ -1,0 +1,35 @@
+<h1>Book Your Ticket</h1>
+<%@flight= Phlight.find(params[:flight_id])%>
+<% @apid=@flight.airplane_id %>
+<%@ap=Airplane.find(@apid)%>
+<%@scid=@ap.seatconfig_id%>
+<% @sc=Seatconfig.find(@scid)%>
+<%ss=@sc.seatcats%>
+<%ss.each do |s|%>
+<%=s.name%>
+<BR>
+  <%s1=s.seats%>
+  <%s1.each do |fs|%>
+
+  <% if fs.available %>
+  <div class="seatcontainer-dark">
+    <%=link_to "", selectseat_path(:seat_id=> fs.id, :booking_id=> @booking.id), class:"seat", method: :post, onclick:"this.classList.toggle('colchange')"%>
+  </div>
+    <%else%>
+    <div class="seatcontainer-light">
+      <%=link_to "", selectinvalid_path(:seat_id=> fs.id), class:"seat"%>
+  </div>
+  <%end%>
+  <%=fs.id%>
+  <%if fs.id % 3==0%>
+  <br>
+  <%end%>
+
+
+
+
+
+
+  <%end%>
+<BR>
+<%end%>

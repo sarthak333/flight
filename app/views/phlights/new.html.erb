@@ -1,0 +1,14 @@
+<h1>Create A New Flight</h1>
+<%= form_for(@phlight, url: newflight_path) do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name, class: 'form-control' %>
+
+<%= f.label :origin %>
+<%= f.text_field :origin, class: 'form-control' %>
+
+<%= f.label :destination %>
+<%= f.text_field :destination, class: 'form-control' %>
+
+<%#= f.collection_select :airplane_id, Airplane.order(:name),:id,:name, include_blank: true, class: "form-control" %>
+<%= f.submit "Create Flight", class: "btn btn-outline-info btn-lg" %>
+<% end %>

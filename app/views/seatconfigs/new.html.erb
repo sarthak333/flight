@@ -1,0 +1,8 @@
+<h1>New Seat Configuration</h1>
+<%= form_for(@seatconfig, url: newseatconfig_path) do |f| %>
+    <%#= render 'shared/error_messages_seatconfig' %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.submit "Create Seat Configuration", class: "btn btn-outline-info btn-lg" %>
+  <% end %>
