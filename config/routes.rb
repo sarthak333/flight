@@ -18,7 +18,7 @@ devise_for :users, :controllers => { registrations: 'registrations' }
   get '/showsconfig', to: 'seatconfigs#show'
   get '/addconfig', to: 'airplanes#add'
   get '/addconfiguration', to: 'airplanes#addconfiguration'
-  post '/addconfig', to: 'airplanes#postadd'
+  get '/addconfig1', to: 'airplanes#postadd'
   get '/airplanesshow', to: 'airplanes#show'
   post '/search', to: 'searchs#createsearch'
   get '/search', to: 'searchs#error'
