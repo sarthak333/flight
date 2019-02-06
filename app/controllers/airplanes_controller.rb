@@ -30,7 +30,7 @@ class AirplanesController < ApplicationController
     if @airplane.seatconfig_id.nil?
     @seatconfig=Seatconfig.find(params[:seatconfig_id])
     @scnew=Seatconfig.create(:name=>@airplane.name)
-    @scnew.update_column(:show, false)
+    @scnew.update(:show=> false)
     @seatconfig.seatcats.each do |s|
         @sc=@scnew.seatcats.create(:name => s.name, :row => s.row, :column=> s.column, :baseprice=> s.baseprice)
       s.row.times do |r|
@@ -44,7 +44,7 @@ class AirplanesController < ApplicationController
         puts "testbug"
         puts @scnew.id
         puts "adasda"
-  @airplane.update_column(:seatconfig_id, @scnew.id)
+  @airplane.update(:seatconfig_id=>@scnew.id)
     end
   end
   end
