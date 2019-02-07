@@ -20,7 +20,11 @@
       <%=link_to "", selectinvalid_path(:seat_id=> fs.id), class:"seat"%>
   </div>
   <%end%>
-  <%if fs.id % 3==0%>
+  <%if fs.position=== "aisle" && Seat.find((fs.id+1)).position==="aisle"%>
+  <div class="seatcontainer-empty">
+  <div class="hidden">.</div></div>
+  <%end%>
+  <%if fs.number % fs.break==0%>
   <br>
   <%end%>
   <%end%>

@@ -28,10 +28,35 @@ def addplane
   @nscon=Seatconfig.create(:name=>@scon.name, :show=>false)
   @ap.update(:seatconfig_id=>@nscon.id)
   @scon.seatcats.each do |a|
+    number=1
   @nscat= @nscon.seatcats.create(:name=>a.name,:row => a.row, :column=> a.column, :baseprice=> a.baseprice)
   a.row.times do |r|
     a.column.times do |c|
-      @nscat.seats.create()
+      @fs=@nscat.seats.create()
+      @fs.update_column(:number, number)
+      number=number+1
+      @fs.update_column(:break, a.column)
+      if @fs.id % a.column == 0 || @fs.id % a.column == 1
+        if @fs.number % @fs.break == 0 || @fs.number % @fs.break == 1
+        @fs.update_column(:position, "window")
+        end
+      end
+        if a.column%2==0
+          if @fs.number % (a.column/2)==0 || @fs.number % (a.column/2)==1
+          if @fs.position === "window"
+          else
+          @fs.update_column(:position, "aisle")
+          end
+        end
+      else
+        if (@fs.number+(a.column/2))% a.column==0 || (@fs.number+((a.column/2)-1))%a.column==0
+        if @fs.position === "window"
+        else
+        @fs.update_column(:position, "aisle")
+        end
+      end
+      end
+
     end
     end
     end

@@ -1,9 +1,16 @@
 <h1>Confirm Your Booking</h1>
+<div class="row">
 <%=render @booking.tempseats%>
+</div>
 <br>
 <%p=0%>
 <% @booking.tempseats.each do |t| %>
+<% if t.position==="middle"%>
 <%p=p+t.price%>
+<%else%>
+<%q= (0.5*t.price)+t.price%>
+<%p=p+q%>
+<%end%>
 <%end%>
 <%@booking.update_column(:price,p)%>
 <h3>Total Price:</h3>

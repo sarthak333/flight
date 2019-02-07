@@ -7,5 +7,5 @@
 <%= link_to "Add Existing Config", addconfiguration_path(:airplane_id=>@airplane.id), class:"btn btn-outline-success"%>
 <%else%>
 <%@seatconfig= Seatconfig.find(@airplane.seatconfig_id)%>
-<%= render @seatconfig.seatcats %>
+<%= render @seatconfig.seatcats.order(:id) %>
 <%end%>

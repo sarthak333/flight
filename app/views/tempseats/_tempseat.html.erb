@@ -1,5 +1,12 @@
+<div class="col-sm-4">
 <h3>Seat</h3>
 <h5>Position:</h5>
 <%= tempseat.position %>
 <h5>Price:</h5>
-<%= tempseat.price %>
+<%if tempseat.position==="middle"%>
+<%q=tempseat.price%>
+<%else%>
+<%q= (0.5*tempseat.price)+tempseat.price%>
+<%end%>
+<%= q %>
+</div>

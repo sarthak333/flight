@@ -16,8 +16,11 @@
 <div class="seatcontainer-dark">
 <div class="hidden">.</div></div>
 <%end%>
-
-<%if a.id % 3==0%>
+<%if a.position=== "aisle" && Seat.find((a.id+1)).position==="aisle"%>
+<div class="seatcontainer-empty">
+<div class="hidden">.</div></div>
+<%end%>
+<%if a.number % a.break==0%>
 <br>
 <%end%>
 <%end%>
