@@ -13,7 +13,7 @@
 
   <% if fs.available %>
   <div class="seatcontainer-dark">
-    <%=link_to "", selectseaet_path(:seat_id=> fs.id, :booking_id=> @booking.id), method: :post, class:"seat",  onclick:"this.classList.toggle('colchange')"%>
+    <%=button_to "", selectseaet_path(:seat_id=> fs.id, :booking_id=> @booking.id), method: :post, class:"seat",  onclick:"this.classList.toggle('colchange')"%>
   </div>
     <%else%>
     <div class="seatcontainer-light">
