@@ -4,6 +4,6 @@
 <%=a.name%>
 <%@scon=Seatconfig.find(a.seatconfig_id) %>
 <%=@scon.name%>
-<%=render @scon.seatcats%>
+<%=render @scon.seatcats.order(:id)%>
 <%= link_to "Add Airplane", addplanees_path(:airplane_id=> a.id, :phlight_id=> @phlight.id), class:"btn btn-outline-success"%>
 <%end%>

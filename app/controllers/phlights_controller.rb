@@ -36,11 +36,10 @@ def addplane
       @fs.update_column(:number, number)
       number=number+1
       @fs.update_column(:break, a.column)
-      if @fs.id % a.column == 0 || @fs.id % a.column == 1
         if @fs.number % @fs.break == 0 || @fs.number % @fs.break == 1
         @fs.update_column(:position, "window")
         end
-      end
+      
         if a.column%2==0
           if @fs.number % (a.column/2)==0 || @fs.number % (a.column/2)==1
           if @fs.position === "window"

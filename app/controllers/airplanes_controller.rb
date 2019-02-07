@@ -27,7 +27,6 @@ class AirplanesController < ApplicationController
 
   def postadd
     @airplane=Airplane.find(params[:airplane_id])
-
     @seatconfig=Seatconfig.find(params[:seatconfig_id])
     @scnew=Seatconfig.create(:name=>@airplane.name)
     @scnew.update(:show=> false)
@@ -40,10 +39,10 @@ class AirplanesController < ApplicationController
         @fs.update_column(:number, number)
         number=number+1
         @fs.update_column(:break, s.column)
-        if @fs.id % s.column == 0 || @fs.id % s.column == 1
+
           if @fs.number % @fs.break == 0 || @fs.number % @fs.break == 1
           @fs.update_column(:position, "window")
-          end
+      
       end
         if s.column%2==0
 
