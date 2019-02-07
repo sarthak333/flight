@@ -1,5 +1,11 @@
 class BookingsController < ApplicationController
   def new
+    @left=Booking.where(confirm: true)
+    @left.each do |l|
+      if l.tempseats.count==0
+        @left.destroy(l.id)
+      end
+    end
     @del=Booking.where(confirm: false)
     @del.each do |d|
       d.tempseats.destroy_all
@@ -41,6 +47,14 @@ def invalid
 flash[:danger]="Seat not available"
 redirect_back(fallback_location: root_path)
 end
+
+def modify
+end
+
+def changeseat
+  @booking=Booking.find(params[:booking_id])
+end
+
 
 
 end

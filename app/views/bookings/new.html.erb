@@ -1,34 +1,34 @@
-<h1>Book Your Ticket</h1>
-<%@flight= Phlight.find(params[:flight_id])%>
-<% @apid=@flight.airplane_id %>
-<%@ap=Airplane.find(@apid)%>
-<%@scid=@ap.seatconfig_id%>
-<% @sc=Seatconfig.find(@scid)%>
-<%ss=@sc.seatcats.order(:id)%>
-<%ss.each do |s|%>
-<%=s.name%>
-<BR>
-  <%s1=s.seats.order(:id)%>
-  <%s1.each do |fs|%>
+  <h1>Book Your Ticket</h1>
+  <%@flight= Phlight.find(params[:flight_id])%>
+  <% @apid=@flight.airplane_id %>
+  <%@ap=Airplane.find(@apid)%>
+  <%@scid=@ap.seatconfig_id%>
+  <% @sc=Seatconfig.find(@scid)%>
+  <%ss=@sc.seatcats.order(:id)%>
+  <%ss.each do |s|%>
+  <%=s.name%>
+  <br>
+    <%s1=s.seats.order(:id)%>
+    <%s1.each do |fs|%>
 
-  <% if fs.available %>
-  <div class="seatcontainer-dark">
-    <%=button_to "", selectseaet_path(:seat_id=> fs.id, :booking_id=> @booking.id), method: :post, class:"seat",  onclick:"this.classList.toggle('colchange')"%>
-  </div>
-    <%else%>
-    <div class="seatcontainer-light">
-      <%=link_to "", selectinvalid_path(:seat_id=> fs.id), class:"seat"%>
-  </div>
-  <%end%>
-  <%if fs.position=== "aisle" && Seat.find((fs.id+1)).position==="aisle"%>
-  <div class="seatcontainer-empty">
-  <div class="hidden">.</div></div>
-  <%end%>
-  <%if fs.number % fs.break==0%>
+    <% if fs.available %>
+    <div class="seatcontainer-dark">
+      <%=button_to "", selectseaet_path(:seat_id=> fs.id, :booking_id=> @booking.id), method: :post, class:"seat",  onclick:"this.classList.toggle('colchange')"%>
+    </div>
+      <%else%>
+      <div class="seatcontainer-light">
+        <%=link_to "", selectinvalid_path(:seat_id=> fs.id), class:"seat"%>
+    </div>
+    <%end%>
+    <%if fs.position=== "aisle" && Seat.find((fs.id+1)).position==="aisle"%>
+    <div class="seatcontainer-empty">
+    <div class="hidden">.</div></div>
+    <%end%>
+    <%if fs.number % fs.break==0%>
+    <br>
+    <%end%>
+    <%end%>
   <br>
   <%end%>
-  <%end%>
-<BR>
-<%end%>
 
-<%= link_to "Check Price", seeprice_path(:booking_id=>@booking.id), class:"btn btn-outline-info"%>
+  <%= link_to "Check Price", seeprice_path(:booking_id=>@booking.id), class:"btn btn-outline-info"%>

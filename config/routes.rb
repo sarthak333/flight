@@ -27,6 +27,8 @@ devise_for :users, :controllers => { registrations: 'registrations' }
   get '/selectinvalid', to: 'bookings#invalid'
   get '/seeprice', to: 'bookings#seeprice'
   get '/confirm', to: 'bookings#confirm'
+  get 'modifybooking', to: 'bookings#modify'
+  get '/changeseat', to: 'bookings#changeseat'
   authenticated :user do
    root 'pages#logger', as: :authenticated_root
  end
