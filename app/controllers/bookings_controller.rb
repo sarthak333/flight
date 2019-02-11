@@ -72,8 +72,8 @@ def addseat
   @price=@booking.tprice
   @seat=Seat.find(params[:seat_id])
   query=@booking.tempseats.where(seat_id: @seat.id)
-  ori=@booking.tempseats.where(old: true, final:true).first
   if query.exists?
+    query.destroy_all
     if @seat.position==="middle"
       @price=@price-@seat.seatcat.baseprice
     else
@@ -95,26 +95,36 @@ def removeseat
   @booking=Booking.find(params[:booking_id])
   @price=@booking.tprice
   @seat=Seat.find(params[:seat_id])
-  query=@booking.tempseats.where(seat_id: @seat.id)
-  ori=@booking.tempseats.where(old: true, final:true).first
-  ori.update_column(:final, false)
-
+  query=@booking.tempseats.where(seat_id: @seat.id).first
+  query.toggle!(:final)
+  if query.final
+  if @seat.position==="middle"
+    @price=@price+@seat.seatcat.baseprice
+  else
+    @price=@price+@seat.seatcat.baseprice
+   end
+ else
+   if @seat.position==="middle"
+     @price=@price-@seat.seatcat.baseprice
+   else
+     @price=@price-@seat.seatcat.baseprice
+    end
+  end
+   @booking.update_column(:tprice, @price)
 end
 
 def accept
   @booking=Booking.find(params[:booking_id])
-  @booking.update_column(:price, @booking.tprice)
-  tempold=@booking.tempseats.where(:old=> true, :final=>false)
+  price=@booking.price+@booking.tprice
+  @booking.update_column(:price, price)
+  tempold=@booking.tempseats.where(:final=>false)
   tempold.each do |t|
-    puts t.seat_id
-    puts "nil"
     seat=Seat.find(t.seat_id)
     seat.update(:available=> true, :booking_id=>nil)
   end
+  tempold.destroy_all
   tempnew=@booking.tempseats.where(:old=> false, :final=>true)
   tempnew.each do |n|
-    puts n.seat_id
-    puts "bid"
     n.update_column(:old, true)
     s=Seat.find(n.seat_id)
     s.update(:available=> false, :booking_id=> @booking.id)
