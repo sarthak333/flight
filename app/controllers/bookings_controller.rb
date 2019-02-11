@@ -67,12 +67,10 @@ def modify
   @airplane=Airplane.find(@flight.airplane_id)
   @seatconfig=Seatconfig.find(@airplane.seatconfig_id)
 end
-
-def changeseat
+def addseat
   @booking=Booking.find(params[:booking_id])
   @price=@booking.tprice
   @seat=Seat.find(params[:seat_id])
-  #deleting on double click
   query=@booking.tempseats.where(seat_id: @seat.id)
   ori=@booking.tempseats.where(old: true, final:true).first
   if query.exists?
@@ -81,19 +79,25 @@ def changeseat
     else
       @price=@price-@seat.seatcat.baseprice-(0.5*@seat.seatcat.baseprice)
     end
-    Tempseat.destroy(query.first.id)
     else
       if @seat.position==="middle"
         @price=@price+@seat.seatcat.baseprice
       else
         @price=@price+@seat.seatcat.baseprice+(0.5*@seat.seatcat.baseprice)
       end
-      if !ori.nil?
-      ori.update_column(:final, false)
+      @booking.tempseats.create(:seat_id=>@seat.id, :emergency=> @seat.emergency, :position=>@seat.position, :old=> false, :final=>true)
     end
-  @booking.tempseats.create(:seat_id=>@seat.id, :emergency=> @seat.emergency, :position=>@seat.position, :old=> false, :final=>true)
+    @booking.update_column(:tprice, @price)
+
 end
-@booking.update_column(:tprice, @price)
+
+def removeseat
+  @booking=Booking.find(params[:booking_id])
+  @price=@booking.tprice
+  @seat=Seat.find(params[:seat_id])
+  query=@booking.tempseats.where(seat_id: @seat.id)
+  ori=@booking.tempseats.where(old: true, final:true).first
+  ori.update_column(:final, false)
 
 end
 

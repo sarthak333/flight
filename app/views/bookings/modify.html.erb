@@ -7,14 +7,16 @@
 <br>
 <%@seatconfig.seatcats.order(:id).each do |s|%>
 <%s.seats.order(:id).each do|seat|%>
-
+<%=seat.id%>
 <%arr=Seat.where(booking_id: @booking.id).ids%>
 <%if seat.id.in?arr%>
-<div class="seatcontainer-your"><div class="hidden">.</div></div>
+<div class="seatcontainer-your">
+  <%= button_to "", removeseat_path(:booking_id=>@booking.id, :seat_id=> seat.id), method: :post, class:"seat seatcontainer-your",  onclick:"this.classList.toggle('colchangerem')"%>
+</div>
 <%else%>
 <% if seat.available%>
 <div class="seatcontainer-dark">
-<%= button_to "", changeseat_path(:booking_id=>@booking.id, :seat_id=> seat.id), method: :post, class:"seat seatcontainer-dark",  onclick:"this.classList.toggle('colchange')"%>
+<%= button_to "", addseat_path(:booking_id=>@booking.id, :seat_id=> seat.id), method: :post, class:"seat seatcontainer-dark",  onclick:"this.classList.toggle('colchange')"%>
 </div>
 <%else%>
 <div class="seatcontainer-light"><div class="hidden">.</div></div>
