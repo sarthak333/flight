@@ -44,15 +44,22 @@
 <h3>Total Bookings:</h3>
 <%user_bookings=Booking.where(user_id: current_user.id)%>
 <%=user_bookings.count%>
+<br>
+<br>
 <% user_bookings.each do |d|%>
 <% d.update_column(:tprice, 0)%>
 <%end%>
 <%@b=Booking.where(user_id: current_user.id)%>
 <%if @b.count>0 %>
-<div class="row">
+
+  <%@b.each do |bo|%>
   <h4>Booking Pnr:</h4>
-<%@b.pnr%>
-</div>
+  <h5>
+<%=bo.pnr%>
+</h5>
+<br>
+<%end%>
+
 <%else%>
 <h3>Ready to Fly? Book a Seat!</h3>
 <%end%>
