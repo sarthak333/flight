@@ -28,9 +28,6 @@
 <br>
 <%end%>
 <br>
-<% if current_page?(root_path) %>
 <%= link_to "Modify Booking", modifybooking_path(:booking_id=> booking.id), class:"btn btn-outline-info"%>
-<%else%>
-<%#=link_to "Change Seats", changeseat_path(:booking_id=> booking.id), class:"btn btn-outline-success"%>
-<%end%>
+
 </div>

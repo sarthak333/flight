@@ -1,14 +1,22 @@
+<div class="center">
 <h1>Search Results</h1>
 
 <% @req= Phlight.where(origin: @search.origin, destination: @search.destination, fdate: @search.sdate, ftime: @search.stime ).or(Phlight.where(origin: @search.origin)).or(Phlight.where(destination: @search.destination)).or(Phlight.where(fdate: @search.sdate)).or(Phlight.where(ftime: @search.stime))%>
+
 <% @req.each do |r|%>
+
 <%if r==@req.first %>
 <h2>Most Matching Flight:</h2>
 <br>
+
 <%end%>
+
+<div class="fd">
+<br>
 <h4>
 <%= r.name %>
 </h4>
+<br>
 <h5>From:</h5>
 <%=r.origin%>
 <h5>To:</h5>
@@ -20,9 +28,23 @@
 <h5>Time:</h5>
 <%=r.ftime.strftime("%I:%M")%>
 <br>
-<%= link_to "Book a Seat", bookseat_path(:flight_id => r.id), class: "btn btn-outline-success btn-sm"%>
-<%if r==@req.first && !@req.second.nil? %>
-<h2>Here are other similar flights:</h2>
+<%= link_to "Book a Seat", bookseat_path(:flight_id => r.id), class: "btn btn-outline-info"%>
 <br>
+<br>
+</div>
+<br>
+<Br>
+
+
+<%if r==@req.first && !@req.second.nil? %>
+<br>
+<br>
+<br>
+
+<h2>Here are other similar flights:</h2>
+
+<br>
+
 <%end%>
+
 <%end%>

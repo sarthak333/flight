@@ -1,9 +1,19 @@
+<div class="center">
 <h1>Add Airplane to the Flight</h1>
+<br>
+<br>
 <% @phlight=Phlight.find(params[:phlight_id]) %>
+
 <% Airplane.where(show: true).each do |a| %>
-<%=a.name%>
+
 <%@scon=Seatconfig.find(a.seatconfig_id) %>
+<h5>
+
 <%=@scon.name%>
+</h5>
 <%=render @scon.seatcats.order(:id)%>
+
+<br>
 <%= link_to "Add Airplane", addplanees_path(:airplane_id=> a.id, :phlight_id=> @phlight.id), class:"btn btn-outline-success"%>
 <%end%>
+</div>

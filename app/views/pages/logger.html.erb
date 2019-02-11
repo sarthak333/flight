@@ -9,16 +9,20 @@
     <%@left.destroy(l.id)%>
   <%end%>
 <%end%>
-<h1><%=current_user.name %>
+<div class="center">
+<h1><%=current_user.name.upcase %>
 </h1>
 <%if current_user.admin?%>
-<%= link_to "Admin Panel", admins_path, class:"btn btn-outline-primary btn-lg"%>
+<%= link_to "Admin Panel", admins_path, class:"btn btn-outline-info btn-lg"%>
 <%end%>
+</div>
 <br>
 <br>
 <br>
-<h3>Search for Flights</h3>
+<h3 class="center">Search for Flights</h3>
 <%  @search=Search.new%>
+<div class="row">
+<div class="col-sm-6 offset-sm-3 ">
 <%= form_for(@search, url: search_path) do |f| %>
 
 <%= f.label :origin %>
@@ -32,34 +36,44 @@
 
 <%= f.label :time %>
 <%= f.time_field :stime, class: 'form-control' %>
-
-
+<br>
+<div class="center">
 <%= f.submit "Search", class: "btn btn-outline-warning btn-lg", method: :post %>
+</div>
 <% end %>
-
+</div>
+</div>
 <BR>
   <br>
-
+<br>
+<div class="center">
 <h2>Your Bookings</h2>
 <h3>Total Bookings:</h3>
 <%user_bookings=Booking.where(user_id: current_user.id)%>
 <%=user_bookings.count%>
+
 <br>
 <br>
 <% user_bookings.each do |d|%>
 <% d.update_column(:tprice, 0)%>
 <%end%>
 <%@b=Booking.where(user_id: current_user.id)%>
+
 <%if @b.count>0 %>
 
   <%@b.each do |bo|%>
-  <h4>Booking Pnr:</h4>
+
+  <h4>Booking PNR:</h4>
   <h5>
 <%=bo.pnr%>
 </h5>
+
 <br>
+
 <%end%>
 
+
 <%else%>
-<h3>Ready to Fly? Book a Seat!</h3>
+<h3 class="center">Ready to Fly? Book a Seat!</h3>
 <%end%>
+</div>

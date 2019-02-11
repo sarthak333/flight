@@ -1,4 +1,6 @@
-<h1>Create A New Flight</h1>
+<h1 class="center">Create A New Flight</h1>
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
 <%= form_for(@phlight, url: newflight_path) do |f| %>
 <%= f.label :name %>
 <%= f.text_field :name, class: 'form-control' %>
@@ -14,7 +16,10 @@
 
 <%= f.label :time%>
 <%= f.time_field :ftime, class: 'form-control' %>
-
-
+<br>
+<div class="center">
 <%= f.submit "Create Flight", class: "btn btn-outline-info btn-lg" %>
+</div>
 <% end %>
+</div>
+</div>

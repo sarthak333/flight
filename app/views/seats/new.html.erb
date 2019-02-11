@@ -1,3 +1,7 @@
+<div class="center">
 <h1>Seat Profiling</h1>
-<%= render @seatcat.seats %>
+<br>
+<%= render @seatcat.seats.order(:id) %>
+<br>
 <%= link_to "Check Configurations", showsconfig_path, class:"btn btn-outline-success" %>
+</div>

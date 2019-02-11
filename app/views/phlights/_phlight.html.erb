@@ -2,34 +2,43 @@
 <%@airplane=Airplane.find(phlight.airplane_id)%>
 <%@scon=Seatconfig.find(@airplane.seatconfig_id) %>
 <div class="col-sm-6">
-  <h3> Name:</h3>
+  <div class="fdetails">
+    <br>
+  <h5> Name:</h5>
   <h5>
 <%= phlight.name %>
 </h5>
 <br>
-  <h3> Origin:</h3>
+  <h5> Origin:</h5>
   <h5>
 <%= phlight.origin %>
 </h5>
 <br>
-  <h3> Destination:</h3>
+  <h5> Destination:</h5>
   <h5>
 <%= phlight.destination %>
 </h5>
-<h3> Date:</h3>
+<br>
+<h5> Date:</h5>
 <h5>
 <%= phlight.fdate %>
 </h5>
-<h3> Time:</h3>
+<br>
+<h5> Time:</h5>
 <h5>
 <%= phlight.ftime.strftime("%I:%M")%>
 </h5>
-<h3> Airplane:</h3>
+<br>
+<h5> Airplane:</h5>
 <h5>
 <%=@airplane.name %>
 </h5>
+<br>
+</div>
+<br>
 
 <br>
+
 <%=render @scon.seatcats.order(:id)%>
 
 

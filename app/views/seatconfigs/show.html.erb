@@ -1,6 +1,10 @@
-<h1>Show of seatconfig</h1>
+<div class="center">
+<h1>Seat Configuration</h1>
+<br>
 <% @seatconfig= Seatconfig.where(show: true) %>
+<div class="row">
 <% @seatconfig.each do |s|%>
+<div class="col-sm-6">
 <h3><%= s.name %></h3>
 <%= render s.seatcats %>
 <br>
@@ -8,4 +12,7 @@
 <br>
 <br>
 <br>
+</div>
 <%end%>
+</div>
+</div>

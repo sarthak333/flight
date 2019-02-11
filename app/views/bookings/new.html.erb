@@ -1,3 +1,4 @@
+<div class="center">
   <h1>Book Your Ticket</h1>
   <%@flight= Phlight.find(params[:flight_id])%>
   <% @apid=@flight.airplane_id %>
@@ -32,3 +33,4 @@
   <%end%>
 
   <%= link_to "Check Price", seeprice_path(:booking_id=>@booking.id), class:"btn btn-outline-info"%>
+</div>

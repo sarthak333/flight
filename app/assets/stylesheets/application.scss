@@ -18,7 +18,9 @@
   padding-left: 20%;
   padding-right: 20%;
 }
-
+.form-control{
+  width: 100%;
+}
 .seatcontainer-dark{
   display: inline-block;
   height:20px !important;
@@ -26,6 +28,14 @@
   background-color: #b3b3b3;
   border:none !important;
   box-shadow: none !important;
+}
+.link{
+a{
+  color:#000;
+}
+a:hover{
+  text-decoration: none !important;
+}
 }
 .seatcontainer-light{
   display: inline-block;
@@ -49,6 +59,21 @@
    display: inline-block !important;
    height:20px !important;
    width: 20px !important;
+ }
+ .center{
+   text-align: center;
+ }
+ .fdetails{
+   background-color: #f7f7f7;
+ }
+ .fd{
+   background-color: #fafafa;
+ }
+ .centerf{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
  }
  .navbar{
    margin-bottom:3%;

@@ -1,6 +1,8 @@
+<div class="center">
 <h1>Confirm Changes</h1>
 <h4>New Price</h4>
 <%=@booking.tprice%>
 <br>
-
-<%= link_to "accept", accept_path(:booking_id=>@booking.id), class:"btn btn-outline-success"%>
+<br>
+<%= link_to "Accept", accept_path(:booking_id=>@booking.id), class:"btn btn-outline-success"%>
+</div>

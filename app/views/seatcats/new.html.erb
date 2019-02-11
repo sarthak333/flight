@@ -1,5 +1,6 @@
-<h1> Add Seat Classes to the Configuration: </h1>
-
+<h1 class="center"> Add Seat Classes to the Configuration: </h1>
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
 <%= form_for(@seatcat, url: newseatcat_path(:seatconfig_id => @seatconfig.id)) do |f| %>
 <p>
   <%= f.label :name %><br>
@@ -19,7 +20,10 @@
 
   </p>
 
-  <p>
+  <p class="center">
+
           <%= f.submit "Create Seat Category", class: "btn btn-outline-info btn-lg" %>
     </p>
 <% end %>
+</div>
+</div>
