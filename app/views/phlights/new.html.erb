@@ -9,5 +9,12 @@
 <%= f.label :destination %>
 <%= f.text_field :destination, class: 'form-control' %>
 
+<%= f.label :date%>
+<%= f.date_field :fdate, class: 'form-control' %>
+
+<%= f.label :time%>
+<%= f.time_field :ftime, class: 'form-control' %>
+
+
 <%= f.submit "Create Flight", class: "btn btn-outline-info btn-lg" %>
 <% end %>

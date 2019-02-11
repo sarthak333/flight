@@ -39,7 +39,7 @@ def addplane
         if @fs.number % @fs.break == 0 || @fs.number % @fs.break == 1
         @fs.update_column(:position, "window")
         end
-      
+
         if a.column%2==0
           if @fs.number % (a.column/2)==0 || @fs.number % (a.column/2)==1
           if @fs.position === "window"
@@ -60,15 +60,14 @@ def addplane
     end
     end
   @phlight.update(:airplane_id=> @ap.id)
-  puts "addplane"
-  puts "testbug"
+
   flash[:success]="Airplane has been added successfully"
   redirect_to root_path
 end
 
   private
   def phlight_params
-    params.require(:phlight).permit(:name, :origin, :destination)
+    params.require(:phlight).permit(:name, :origin, :destination, :fdate, :ftime)
   end
 
 end

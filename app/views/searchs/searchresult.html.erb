@@ -1,58 +1,28 @@
-<%flight= Phlight.where(origin: @search.origin, destination: @search.destination) %>
 <h1>Search Results</h1>
-<% if flight.count>=1 %>
-<h3>Your Required Flights</h3>
-<%flight.each do |p|%>
-<h4>
-<%=p.name%>
-</h4>
-<h5>From:</h5>
-<%=p.origin%>
-<h5>To:</h5>
-<%=p.destination%>
-<br>
-<%= link_to "Book a Seat", bookseat_path(:flight_id => p.id), class: "btn btn-outline-success btn-sm"%>
-<br>
-<%end%>
-<%else%>
-<h3>Sorry we don't fly that route yet.</h3>
-<br>
-<Br>
-<%flighto= Phlight.where(origin: @search.origin) %>
-<%flightd= Phlight.where(destination: @search.destination) %>
-<% if flighto.count>=1 %>
-<h5>Flights With the Same Origin </h5>
-<% flighto.each do |po| %>
-<h4>
-<%= po.name %>
-</h4>
-<h5>From:</h5>
-<%=po.origin%>
-<h5>To:</h5>
-<%=po.destination%>
-<br>
-<%= link_to "Book a Seat", bookseat_path(:flight_id => po.id), class: "btn btn-outline-success btn-sm"%>
-<br>
 
+<% @req= Phlight.where(origin: @search.origin, destination: @search.destination, fdate: @search.sdate, ftime: @search.stime ).or(Phlight.where(origin: @search.origin)).or(Phlight.where(destination: @search.destination)).or(Phlight.where(fdate: @search.sdate)).or(Phlight.where(ftime: @search.stime))%>
+<% @req.each do |r|%>
+<%if r==@req.first %>
+<h2>Most Matching Flight:</h2>
+<br>
 <%end%>
-<%end%>
-<% if flightd.count>=1 %>
-<br>
-<br>
-<br>
-<h5>Flights With the Same Destination </h5>
-<% flightd.each do |pd| %>
 <h4>
-<%= pd.name %>
+<%= r.name %>
 </h4>
 <h5>From:</h5>
-<%=pd.origin%>
+<%=r.origin%>
 <h5>To:</h5>
-<%=pd.destination%>
+<%=r.destination%>
 <br>
-<%= link_to "Book a Seat", bookseat_path(:flight_id => pd.id), class: "btn btn-outline-success btn-sm"%>
+<h5>Date:</h5>
+<%=r.fdate%>
+<br>
+<h5>Time:</h5>
+<%=r.ftime.strftime("%I:%M")%>
+<br>
+<%= link_to "Book a Seat", bookseat_path(:flight_id => r.id), class: "btn btn-outline-success btn-sm"%>
+<%if r==@req.first && !@req.second.nil? %>
+<h2>Here are other similar flights:</h2>
 <br>
 <%end%>
-<%end%>
-
 <%end%>

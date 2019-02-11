@@ -88,7 +88,9 @@ def changeseat
       else
         @price=@price+@seat.seatcat.baseprice+(0.5*@seat.seatcat.baseprice)
       end
+      if !ori.nil?
       ori.update_column(:final, false)
+    end
   @booking.tempseats.create(:seat_id=>@seat.id, :emergency=> @seat.emergency, :position=>@seat.position, :old=> false, :final=>true)
 end
 @booking.update_column(:tprice, @price)
@@ -113,6 +115,8 @@ def accept
     s=Seat.find(n.seat_id)
     s.update(:available=> false, :booking_id=> @booking.id)
   end
+  flash[:success]="Modifications made"
+  redirect_to root_path
   end
 
 

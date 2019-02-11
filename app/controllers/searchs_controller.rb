@@ -14,6 +14,6 @@ end
 
 private
 def search_params
-  params.require(:search).permit(:origin, :destination)
+  params.require(:search).permit(:origin, :destination, :sdate, :stime)
 end
 end

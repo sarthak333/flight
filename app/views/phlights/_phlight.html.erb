@@ -16,6 +16,14 @@
   <h5>
 <%= phlight.destination %>
 </h5>
+<h3> Date:</h3>
+<h5>
+<%= phlight.fdate %>
+</h5>
+<h3> Time:</h3>
+<h5>
+<%= phlight.ftime.strftime("%I:%M")%>
+</h5>
 <h3> Airplane:</h3>
 <h5>
 <%=@airplane.name %>

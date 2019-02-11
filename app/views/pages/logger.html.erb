@@ -27,6 +27,13 @@
 <%= f.label :destination %>
 <%= f.text_field :destination, class: 'form-control' %>
 
+<%= f.label :date %>
+<%= f.date_field :sdate, class: 'form-control' %>
+
+<%= f.label :time %>
+<%= f.time_field :stime, class: 'form-control' %>
+
+
 <%= f.submit "Search", class: "btn btn-outline-warning btn-lg", method: :post %>
 <% end %>
 
@@ -35,7 +42,11 @@
 
 <h2>Your Bookings</h2>
 <h3>Total Bookings:</h3>
-<%=Booking.where(user_id: current_user.id).count%>
+<%user_bookings=Booking.where(user_id: current_user.id)%>
+<%=user_bookings.count%>
+<% user_bookings.each do |d|%>
+<% d.update_column(:tprice, 0)%>
+<%end%>
 
 <%if Booking.where(user_id: current_user.id).count>0 %>
 <div class="row">
