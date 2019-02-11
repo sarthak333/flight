@@ -30,7 +30,7 @@ devise_for :users, :controllers => { registrations: 'registrations' }
   get 'modifybooking', to: 'bookings#modify'
   post '/changeseat', to: 'bookings#changeseat'
   get '/conchan', to: 'bookings#conchange'
-  post '/accept', to: 'bookings#accept'
+  get '/accept', to: 'bookings#accept'
   authenticated :user do
    root 'pages#logger', as: :authenticated_root
  end
