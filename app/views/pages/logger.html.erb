@@ -66,6 +66,8 @@
   <h4>Booking PNR:</h4>
   <h5>
 <%=bo.pnr%>
+<br>
+<%= link_to "Check Booking", showbooking_path(:booking_id=> bo.id), class:"btn btn-outline-info"%>
 </h5>
 
 <br>
