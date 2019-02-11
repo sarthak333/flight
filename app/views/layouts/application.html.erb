@@ -25,6 +25,11 @@
 
         </ul>
 <ul class="navbar-nav ml-auto">
+  <%= form_tag(pnr_path, class:"form-inline my-2 my-lg-0") do %>
+
+   <%=text_field_tag :store, "", class:'form-control mr-sm-2', placeholder: 'Search PNR'%>
+  <%= submit_tag 'Search' , class:"btn btn-outline-success my-2 my-sm-0"%>
+<% end %>
   <% if user_signed_in? %>
   <li class="nav-item active">
   <p class="nav-link">  <%= current_user.name%></p>

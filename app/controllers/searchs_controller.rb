@@ -11,6 +11,11 @@ end
 def searchresult
 end
 
+def pnr
+  @pnr=params[:store]
+  @booking= Booking.where(pnr: @pnr).first
+  render 'pnr'
+end
 
 private
 def search_params
