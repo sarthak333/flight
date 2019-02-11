@@ -23,7 +23,7 @@ def select
      d=@booking.tempseats.where(seat_id: @seat.id)
     @booking.tempseats.destroy(d.first.id)
   else
-  @booking.tempseats.create(:price=>@secat.baseprice, :seat_id=>@seat.id, :emergency=>@seat.emergency, :booking_id=>@booking.id, :position=>@seat.position)
+  @booking.tempseats.create(:price=>@secat.baseprice, :seat_id=>@seat.id, :emergency=>@seat.emergency, :booking_id=>@booking.id, :position=>@seat.position, :final=> true)
 end
 end
 
@@ -49,12 +49,79 @@ redirect_back(fallback_location: root_path)
 end
 
 def modify
+    @des=Tempseat.where(final: false, old: false)
+    @des.each do |ds|
+    puts ds.id
+    puts "modify des destroy"
+    Tempseat.destroy(ds.id)
+  end
+
+  @del=Booking.where(confirm: false)
+  @del.each do |d|
+    d.tempseats.destroy_all
+  end
+  @del.destroy_all
+  @booking=Booking.find(params[:booking_id])
+  @booking=Booking.find(params[:booking_id])
+  @flight=Phlight.find(@booking.flight_id)
+  @airplane=Airplane.find(@flight.airplane_id)
+  @seatconfig=Seatconfig.find(@airplane.seatconfig_id)
 end
 
 def changeseat
   @booking=Booking.find(params[:booking_id])
+  @price=@booking.tprice
+  @seat=Seat.find(params[:seat_id])
+  #deleting on double click
+  query=@booking.tempseats.where(seat_id: @seat.id)
+  ori=@booking.tempseats.where(old: true, final:true).first
+  if query.exists?
+    if @seat.position==="middle"
+      @price=@price-@seat.seatcat.baseprice
+    else
+      @price=@price-@seat.seatcat.baseprice-(0.5*@seat.seatcat.baseprice)
+    end
+    Tempseat.destroy(query.first.id)
+    else
+      if @seat.position==="middle"
+        @price=@price+@seat.seatcat.baseprice
+      else
+        @price=@price+@seat.seatcat.baseprice+(0.5*@seat.seatcat.baseprice)
+      end
+      ori.update_column(:final, false)
+  @booking.tempseats.create(:seat_id=>@seat.id, :emergency=> @seat.emergency, :position=>@seat.position, :old=> false, :final=>true)
+end
+@booking.update_column(:tprice, @price)
+
 end
 
+def accept
+  @booking=Booking.find(params[:booking_id])
+  @booking.update_column(:price, @booking.tprice)
+  tempold=@booking.tempseats.where(:old=> true, :final=>false)
+  tempold.each do |t|
+    puts t.seat_id
+    puts "nil"
+    seat=Seat.find(t.seat_id)
+    seat.update(:available=> true, :booking_id=>nil)
+  end
+  tempnew=@booking.tempseats.where(:old=> false, :final=>true)
+  tempnew.each do |n|
+    puts n.seat_id
+    puts "bid"
+    n.update_column(:old, true)
+    s=Seat.find(n.seat_id)
+    s.update(:available=> false, :booking_id=> @booking.id)
+  end
+  end
 
+
+def conchange
+  @booking=Booking.find(params[:booking_id])
+end
+
+def change
+
+end
 
 end

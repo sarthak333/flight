@@ -1,3 +1,40 @@
+<div class="row">
+  <div class="col-6">
 <h1>Modify Your Booking</h1>
-<%@booking=Booking.find(params[:booking_id])%>
-<%= render @booking%>
+<%@temp=@booking.tempseats.order(:id)%>
+
+<br>
+<%@seatconfig.seatcats.order(:id).each do |s|%>
+<%s.seats.order(:id).each do|seat|%>
+<%=seat.id%>
+<%arr=Seat.where(booking_id: @booking.id).ids%>
+<%if seat.id.in?arr%>
+<div class="seatcontainer-your"><div class="hidden">.</div></div>
+<%else%>
+<% if seat.available%>
+<div class="seatcontainer-dark">
+<%= button_to "", changeseat_path(:booking_id=>@booking.id, :seat_id=> seat.id), method: :post, class:"seat seatcontainer-dark",  onclick:"this.classList.toggle('colchange')"%>
+</div>
+<%else%>
+<div class="seatcontainer-light"><div class="hidden">.</div></div>
+<%end%>
+<%end%>
+<%if seat.position=== "aisle"%>
+<%if Seat.last.id>seat.id+1 %>
+<% if  Seat.find((seat.id+1)).position==="aisle"%>
+<div class="seatcontainer-empty">
+<div class="hidden">.</div></div>
+<%end%>
+<%end%>
+<%end%>
+<% if seat.number % seat.break ==0 %>
+<br>
+<%end%>
+<%end%>
+<br>
+<%end%>
+
+<%= link_to "Confirm Changes", conchan_path(:booking_id=> @booking.id), class:"btn btn-outline-primary"%>
+</div>
+
+  </div>

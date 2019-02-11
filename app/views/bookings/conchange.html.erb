@@ -1,0 +1,7 @@
+<h1>Confirm Changes</h1>
+<h4>New Price</h4>
+<%=@booking.tprice%>
+
+<br>
+
+<%= link_to "accept", accept_path(:booking_id=>@booking.id), method: :post, class:"btn btn-outline-success"%>

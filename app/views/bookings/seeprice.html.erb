@@ -12,7 +12,7 @@
 <%p=p+q%>
 <%end%>
 <%end%>
-<%@booking.update_column(:price,p)%>
+<%@booking.update(price: p, tprice: 0)%>
 <h3>Total Price:</h3>
 <%=@booking.price%>
 <br>
