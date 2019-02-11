@@ -28,8 +28,8 @@
 <br>
 <%end%>
 <br>
-<%if current_user.nil?%>
-<%else%>
+<%if current_user===User.find(booking.user_id)%>
 <%= link_to "Modify Booking", modifybooking_path(:booking_id=> booking.id), class:"btn btn-outline-info"%>
+<%else%>
 <%end%>
 </div>
