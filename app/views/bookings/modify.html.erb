@@ -7,7 +7,6 @@
 <br>
 <%@seatconfig.seatcats.order(:id).each do |s|%>
 <%s.seats.order(:id).each do|seat|%>
-<%=seat.id%>
 <%arr=Seat.where(booking_id: @booking.id).ids%>
 <%if seat.id.in?arr%>
 <div class="seatcontainer-your">
