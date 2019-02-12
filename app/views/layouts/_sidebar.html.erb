@@ -2,17 +2,23 @@
   <div class="center">
     <br>
     <br>
-    <br>
-    <br>
 
-    <br>
   <h2><%=current_user.name.upcase %>
   </h2>
 
+  <br>
+  <br>
+  <br>
+  <br>
+    <br>
+    <br>
   <%if current_user.admin?%>
   <%= link_to "Admin Panel", admins_path, class:"btn btn-outline-info"%>
   <%end%>
   <br>
+  <br>
+  <%= link_to "Home", root_path, class:"btn btn-outline-success"%>
+
 <br>
 <br>
   <h5>Total Bookings:</h5>

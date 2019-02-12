@@ -25,7 +25,11 @@
 
         </ul>
 <ul class="navbar-nav ml-auto">
+  <%= form_tag(pnr_path, class:"form-inline my-2 my-lg-0") do %>
 
+   <%=text_field_tag :store, "", class:'form-control mr-sm-2', placeholder: 'Search PNR'%>
+  <%= submit_tag 'Search' , class:"btn btn-outline-success my-2 my-sm-0"%>
+<% end %>
 
   <li class="nav-item">
 
@@ -47,13 +51,17 @@
       <%= render 'layouts/sidebar'%>
       <%end%>
     <div class="bodycontainer" >
+      <%if user_signed_in?%>
       <div class="topbar">
         <%= form_tag(pnr_path, class:"form-inline my-2 my-lg-0") do %>
 
          <%=text_field_tag :store, "", class:'form-control mr-sm-2', placeholder: 'Search PNR'%>
         <%= submit_tag 'Search' , class:"btn btn-outline-success my-2 my-sm-0"%>
       <% end %>
+      <br>
+      <br>
         </div>
+        <%end%>
 <%= flash_messages %>
 <br>
           <%= yield %>
