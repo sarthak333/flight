@@ -18,17 +18,19 @@
   <h5>Total Bookings:</h5>
   <%user_bookings=Booking.where(user_id: current_user.id)%>
   <%=user_bookings.count%>
+<br>
 
-
-  <%= link_to 'Profile', edit_user_registration_path, class:"nav-link" %>
 
   <div class="row bottom">
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <%= link_to 'Log out', destroy_user_session_path, class:"sidelink" %>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <%= link_to "Home", root_path, class:"sidelink"%>
         </div>
+        <div class="col-sm-4">
+          <%= link_to 'Profile', edit_user_registration_path, class:"sidelink" %>
+          </div>
     </div>
   </div>
 </div>

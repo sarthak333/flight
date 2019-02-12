@@ -22,7 +22,11 @@ h1, h2, h3, h4, h5, h6{
   padding-left: 400px;
   padding-top: 50px;
 }
+.sidelink{
+  color: #000 !important;
+}
 .bottom{
+  margin-left:5%;
   position: absolute;
   bottom: 0;
 }
@@ -33,6 +37,7 @@ h1, h2, h3, h4, h5, h6{
   position: fixed;
   width:350px;
   background-color: #f7f7f7;
+
 }
 .booking{
   background-color: #fafafa;
