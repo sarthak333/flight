@@ -1,6 +1,5 @@
 
-<%@airplane=Airplane.find(phlight.airplane_id)%>
-<%@scon=Seatconfig.find(@airplane.seatconfig_id) %>
+
 <div class="col-sm-6">
   <div class="fdetails">
     <br>
@@ -30,17 +29,24 @@
 </h5>
 <br>
 <h5> Airplane:</h5>
+<%if !phlight.airplane_id.nil?%>
+<%@airplane=Airplane.find(phlight.airplane_id)%>
+<%@scon=Seatconfig.find(@airplane.seatconfig_id) %>
 <h5>
 <%=@airplane.name %>
 </h5>
+<%else%>
+<%= link_to "Add Airplane", addairplane_path(:phlight_id=> phlight.id), class:"btn btn-outline-success"%>
+<%end%>
 <br>
 </div>
 <br>
 
 <br>
 
+<%if !phlight.airplane_id.nil?%>
 <%=render @scon.seatcats.order(:id)%>
-
+<%end%>
 
 <br>
 </div>
