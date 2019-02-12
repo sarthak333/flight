@@ -9,16 +9,9 @@
     <%@left.destroy(l.id)%>
   <%end%>
 <%end%>
-<div class="center">
-<h1><%=current_user.name.upcase %>
-</h1>
-<%if current_user.admin?%>
-<%= link_to "Admin Panel", admins_path, class:"btn btn-outline-info btn-lg"%>
-<%end%>
-</div>
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
 <h3 class="center">Search for Flights</h3>
 <%  @search=Search.new%>
 <div class="row">
@@ -47,10 +40,7 @@
   <br>
 <br>
 <div class="center">
-<h2>Your Bookings</h2>
-<h3>Total Bookings:</h3>
 <%user_bookings=Booking.where(user_id: current_user.id)%>
-<%=user_bookings.count%>
 
 <br>
 <br>
@@ -63,12 +53,14 @@
 
   <%@b.each do |bo|%>
 
-  <h4>Booking PNR:</h4>
+  <br>
+  <h5>Booking PNR:</h5>
   <h5>
 <%=bo.pnr%>
 <br>
-<%= link_to "Check Booking", showbooking_path(:booking_id=> bo.id), class:"btn btn-outline-info"%>
+<%= link_to "Check Booking", showbooking_path(:booking_id=> bo.id), class:"btn btn-outline-success btn-sm"%>
 </h5>
+<br>
 
 <br>
 
@@ -78,4 +70,5 @@
 <%else%>
 <h3 class="center">Ready to Fly? Book a Seat!</h3>
 <%end%>
+
 </div>
